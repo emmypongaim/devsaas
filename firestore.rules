@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /clients/{clientId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+    match /sites/{siteId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+    match /hostingAccounts/{accountId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+    match /mobileApps/{appId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+    match /developerAccounts/{accountId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+    match /notifications/{notificationId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+    match /notificationSettings/{settingId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+    match /activities/{activityId} {
+      allow read, write: if request.auth != null && (resource == null || resource.data.userId == request.auth.uid);
+    }
+  }
+}
